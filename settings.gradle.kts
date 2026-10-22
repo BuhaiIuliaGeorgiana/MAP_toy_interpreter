@@ -1,0 +1,1 @@
+rootProject.name = "MAP_toy_interpreter"
