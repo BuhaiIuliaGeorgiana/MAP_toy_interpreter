@@ -21,4 +21,9 @@ public class MyList<T> implements IList<T>{
     public int size() {
         return arr.size();
     }
+
+    @Override
+    public String toString(){
+        return arr.toString();
+    }
 }

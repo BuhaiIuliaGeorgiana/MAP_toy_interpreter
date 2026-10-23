@@ -57,4 +57,9 @@ public class MyDictionaryTest {
     void testUpdateWhenTheKeyDoesNotExist() throws ADTException {
         ADTException ex = assertThrows(ADTException.class, ()->dict.update("world",2));
     }
+
+    @Test
+    void testToString(){
+        assertEquals("{hello=1}", dict.toString());
+    }
 }

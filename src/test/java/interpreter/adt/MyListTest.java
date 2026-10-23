@@ -43,4 +43,9 @@ public class MyListTest {
         assertEquals(1,arr.get(1));
     }
 
+    @Test
+    void testToString(){
+        assertEquals("[2]", arr.toString());
+    }
+
 }
