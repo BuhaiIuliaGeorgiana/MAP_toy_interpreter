@@ -27,7 +27,7 @@ public class MyStackTest {
     @Test
     void testIsEmpty() throws ADTException {
         stack.pop();
-        assertEquals(true, stack.isEmpty());
+        assertTrue(stack.isEmpty());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class MyStackTest {
         stack.pop();
 
         ADTException ex = assertThrows(ADTException.class, ()-> stack.pop());
-        assertEquals("pop: the stack is empty",ex.getMessage());
+        assertEquals("stack: pop on an empty stack",ex.getMessage());
 
     }
 

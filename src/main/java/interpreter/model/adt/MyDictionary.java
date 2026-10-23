@@ -30,7 +30,8 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
-    public void put(K key, V value) {
+    public void put(K key, V value) throws ADTException {
+        if(isDefined(key)) throw new ADTException("dict: put a key that already exists");
         hashMap.put(key,value);
     }
 
