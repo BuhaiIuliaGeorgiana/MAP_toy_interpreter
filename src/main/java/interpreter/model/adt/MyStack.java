@@ -1,6 +1,6 @@
 package interpreter.model.adt;
 
-import interpreter.model.exp.ADTException;
+import interpreter.exceptions.ADTException;
 
 import java.util.ArrayDeque;
 

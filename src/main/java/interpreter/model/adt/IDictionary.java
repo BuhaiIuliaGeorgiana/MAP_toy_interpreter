@@ -1,6 +1,6 @@
 package interpreter.model.adt;
 
-import interpreter.model.exp.ADTException;
+import interpreter.exceptions.ADTException;
 
 public interface IDictionary<K,V> {
     boolean isDefined(K Key);

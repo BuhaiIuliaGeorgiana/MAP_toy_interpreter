@@ -1,9 +1,5 @@
 package interpreter.exceptions;
 
-import interpreter.model.exp.ADTException;
-import interpreter.model.exp.ExpressionException;
-import interpreter.model.exp.MyException;
-import interpreter.model.exp.StatementException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

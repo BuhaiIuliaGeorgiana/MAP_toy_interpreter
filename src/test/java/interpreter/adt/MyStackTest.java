@@ -2,7 +2,7 @@ package interpreter.adt;
 
 import interpreter.model.adt.IStack;
 import interpreter.model.adt.MyStack;
-import interpreter.model.exp.ADTException;
+import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

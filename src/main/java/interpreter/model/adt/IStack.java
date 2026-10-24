@@ -1,6 +1,6 @@
 package interpreter.model.adt;
 
-import interpreter.model.exp.ADTException;
+import interpreter.exceptions.ADTException;
 
 public interface IStack<T> {
     void push(T v);

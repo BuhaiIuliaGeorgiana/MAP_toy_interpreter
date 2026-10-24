@@ -1,7 +1,7 @@
 package interpreter.adt;
 
 import interpreter.model.adt.MyDictionary;
-import interpreter.model.exp.ADTException;
+import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
