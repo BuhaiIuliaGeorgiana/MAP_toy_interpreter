@@ -1,5 +1,9 @@
-package interpreter.exceptions;
+package exceptions;
 
+import interpreter.exceptions.ADTException;
+import interpreter.exceptions.ExpressionException;
+import interpreter.exceptions.MyException;
+import interpreter.exceptions.StatementException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
