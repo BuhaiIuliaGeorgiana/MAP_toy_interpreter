@@ -4,5 +4,5 @@ import interpreter.PrgState;
 import interpreter.exceptions.MyException;
 
 public interface IStmt {
-    giPrgState execute(PrgState state) throws MyException;
+    PrgState execute(PrgState state) throws MyException;
 }
