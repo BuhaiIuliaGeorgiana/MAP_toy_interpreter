@@ -16,17 +16,12 @@ public record VarDeclStmt(String name, IType type) implements IStmt {
         var symTable = state.getSymTable();
         if (symTable.isDefined(name))
             throw new StatementException("variable " + name + " was already declared");
-        if (!type.toString().equals("bool") || !type.toString().equals("int")){
+        if (!type.toString().equals("bool") && !type.toString().equals("int")){
             throw new StatementException("invalid type (must be bool or int)");
         }
 
-        if(type.toString().equals("bool")){
-            symTable.update(name, new BoolType().defaultValue());
-        }
+        symTable.put(name, type.defaultValue());
 
-        if(type.toString().equals("int")){
-            symTable.update(name, new IntType().defaultValue());
-        }
 
         return state;
     }

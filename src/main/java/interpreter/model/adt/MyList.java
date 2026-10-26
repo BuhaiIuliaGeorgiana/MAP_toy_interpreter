@@ -13,7 +13,7 @@ public class MyList<T> implements IList<T>{
 
     @Override
     public T get(int index) throws ADTException {
-        if(arr.size()<index || index < 0) throw new ADTException("list: get an invalid index");
+        if(arr.size() <= index || index < 0) throw new ADTException("list: get an invalid index");
         return arr.get(index);
     }
 

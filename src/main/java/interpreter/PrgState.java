@@ -48,4 +48,9 @@ public class PrgState {
     public void setOut(IList<IValue> newOut){
         this.out = newOut;
     }
+
+    @Override
+    public String toString(){
+        return "Out:\n" + out.toString() + "\n SymTable: \n" + symTable.toString() + "\n ExeStack: \n" + exeStack.toString();
+    }
 }

@@ -6,7 +6,7 @@ import interpreter.model.exp.IExp;
 
 public record PrintStmt(IExp ex) implements IStmt{
     public PrgState execute(PrgState state) throws MyException{
-        System.out.println(ex.eval(state.getSymTable()).toString());
+        state.getOut().add(ex.eval(state.getSymTable()));
         return state;
     }
 
