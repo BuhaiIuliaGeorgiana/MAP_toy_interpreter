@@ -15,12 +15,12 @@ public class MyDictionaryTest {
     }
 
     @Test
-    void testIsDefinedWhenTheElemExists(){
+    void isDefinedWhenTheElemExists(){
         assertTrue(dict.isDefined("hello"));
     }
 
     @Test
-    void testIsDefinedWhenTheElemDoesNotExist(){
+    void isDefinedWhenTheElemDoesNotExist(){
         assertFalse(dict.isDefined("world"));
     }
 
@@ -32,7 +32,7 @@ public class MyDictionaryTest {
     @Test
     void testLookupWhenTheKeyDoesNotExist() throws ADTException {
         ADTException ex = assertThrows(ADTException.class, ()->dict.lookup("world"));
-        assertEquals("dict: lookup on an item that does not exist", ex.getMessage());
+        assertEquals("Key does not exist", ex.getMessage());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class MyDictionaryTest {
     @Test
     void testPutKeyThatAlreadyExists() throws ADTException {
         ADTException ex = assertThrows(ADTException.class, ()->dict.put("hello",2));
-        assertEquals("dict: put a key that already exists", ex.getMessage());
+        assertEquals("Key already exists", ex.getMessage());
     }
 
     @Test
@@ -56,7 +56,9 @@ public class MyDictionaryTest {
     @Test
     void testUpdateWhenTheKeyDoesNotExist() throws ADTException {
         ADTException ex = assertThrows(ADTException.class, ()->dict.update("world",2));
+        assertEquals("Key does not exist", ex.getMessage());
     }
+
 
     @Test
     void testToString(){

@@ -77,11 +77,19 @@ public class ArithExpTest {
     }
 
     @Test
-    void operandNotInteger(){
+    void secondOperandNotInteger(){
         ArithExp a;
         a = new ArithExp(ArithOp.DIV,new ValueExp(new IntValue(5)),new ValueExp(new BoolValue(true)));
         ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>()));
         assertEquals("second operand is not an integer",ex.getMessage());
+    }
+
+        @Test
+    void firstOperandNotInteger(){
+        ArithExp a;
+        a = new ArithExp(ArithOp.DIV,new ValueExp(new BoolValue(true)),new ValueExp(new IntValue(5)));
+        ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>()));
+        assertEquals("first operand is not an integer",ex.getMessage());
     }
 
 }

@@ -12,22 +12,85 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class LogicExpTest {
     @Test
-    void TestAdd() throws MyException {
+    void TestAndTrueTrue() throws MyException {
         LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
         assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
     }
+    @Test
+    void TestAndTrueFalse() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(false)));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+    }
 
     @Test
-    void TestOr() throws MyException {
+    void TestAndFalseTrue() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(true)));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+    }
+
+    @Test
+    void TestAndFalseFalse() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(false)));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+    }
+
+
+
+    @Test
+    void TestOrTrueFalse() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(false)));
         assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
     }
 
     @Test
-    void operandNotBoolean() throws MyException {
+    void TestOrFalseTrue() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(true)));
+        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
+    }
+
+
+    @Test
+    void TestOrTrueTrue() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
+        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
+    }
+    @Test
+    void TestOrFalseFalse() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(false)));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+    }
+
+    @Test
+    void firstOperandNotBoolean() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new IntValue(5)),new ValueExp(new BoolValue(false)));
         ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>()));
 
     }
+
+    @Test
+    void secondOperandNotBoolean() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(false)),new ValueExp(new IntValue(5)));
+        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>()));
+
+    }
+
+    void BothOperandsNotBoolean() throws MyException {
+        LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new IntValue(5)),new ValueExp(new IntValue(5)));
+        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>()));
+
+    }
+
+    @Test
+    void andToString(){
+            LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
+            assertEquals("(true & true)", l.toString());
+    }
+
+    @Test
+    void ortToString(){
+        LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
+        assertEquals("(true / true)", l.toString());
+    }
+
 
 }
