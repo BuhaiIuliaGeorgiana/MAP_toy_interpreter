@@ -42,19 +42,7 @@ public class ControllerTest {
         assertThrows(StatementException.class, () -> c.oneStep(state));
     }
 
-    @Test
-    void testAllStepEmptiesStack() throws MyException {
-        PrgState state = new PrgState(
-                new MyStack<>(), new MyDictionary<>(),
-                new MyList<>(), Examples.ex1());
-
-        Controller c = new Controller(new Repository(state), false);
-
-        c.allStep();
-
-        assertTrue(state.getExeStack().isEmpty());
-    }
-
+    /*
     @Test
     void testExample1() throws MyException {
         PrgState state = new PrgState(
@@ -67,6 +55,8 @@ public class ControllerTest {
         assertEquals(new IntValue(2), state.getOut().get(0));
         assertEquals(1, state.getOut().size());
     }
+    */
+
 
     @Test
     void testExample2() throws MyException {

@@ -10,11 +10,21 @@ public class Examples {
 
     // int v; v = 2; print(v)
     public static IStmt ex1() {
-        return new CompStmt(
+
+        /*return new CompStmt(
                 new VarDeclStmt("v", new IntType()),
                 new CompStmt(
                         new AssignStmt("v",
                                 new ValueExp(new IntValue(2))),
+                        new PrintStmt(new VarExp("v"))
+                )
+        );
+        */
+
+        return new CompStmt(
+                new VarDeclStmt("a", new BoolType()),
+                new CompStmt(
+                        new AssignStmt("a", new ValueExp(new IntValue(2))),
                         new PrintStmt(new VarExp("v"))
                 )
         );
