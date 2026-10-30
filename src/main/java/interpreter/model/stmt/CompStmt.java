@@ -2,7 +2,7 @@ package interpreter.model.stmt;
 
 import interpreter.PrgState;
 
-public record CompStmt(IStmt first, IStmt second) implements IStmt {     // S1
+public record CompStmt(IStmt first, IStmt second) implements IStmt {
     @Override
     public PrgState execute(PrgState state) {
         state.getExeStack().push(second);
