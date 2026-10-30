@@ -47,6 +47,6 @@ public class CompStmtTest {
     @Test
     void testToString() {
         CompStmt s = new CompStmt(new NopStmt(), new NopStmt());
-        assertEquals("(NopStmt[]; NopStmt[])", s.toString());
+        assertEquals("(nop; nop)", s.toString());
     }
 }

@@ -10,4 +10,9 @@ public record PrintStmt(IExp ex) implements IStmt{
         return state;
     }
 
+    @Override
+    public String toString() {
+        return "print(" + ex + ")";
+    }
+
 }

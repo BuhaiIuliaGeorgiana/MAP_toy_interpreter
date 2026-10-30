@@ -81,15 +81,25 @@ public class LogicExpTest {
     }
 
     @Test
-    void andToString(){
-            LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
-            assertEquals("(true & true)", l.toString());
+    void andToString() {
+        LogicExp l = new LogicExp(
+                LogicOP.AND,
+                new ValueExp(new BoolValue(true)),
+                new ValueExp(new BoolValue(true))
+        );
+
+        assertEquals("(true and true)", l.toString());
     }
 
     @Test
-    void ortToString(){
-        LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
-        assertEquals("(true / true)", l.toString());
+    void ortToString() {
+        LogicExp l = new LogicExp(
+                LogicOP.OR,
+                new ValueExp(new BoolValue(true)),
+                new ValueExp(new BoolValue(true))
+        );
+
+        assertEquals("(true or true)", l.toString());
     }
 
 

@@ -9,6 +9,7 @@ import interpreter.model.adt.MyList;
 import interpreter.model.adt.MyStack;
 import interpreter.model.exp.ArithExp;
 import interpreter.model.exp.ArithOp;
+import interpreter.model.exp.IExp;
 import interpreter.model.exp.ValueExp;
 import interpreter.model.stmt.IfStmt;
 import interpreter.model.stmt.IStmt;
@@ -72,4 +73,18 @@ public class IfStmtTest {
         assertThrows(ExpressionException.class, () -> s.execute(state));
         assertTrue(state.getExeStack().isEmpty());
     }
+
+    @Test
+    void testToString() {
+        IStmt thenS = new PrintStmt(new ValueExp(new IntValue(2)));
+        IStmt elseS = new PrintStmt(new ValueExp(new IntValue(3)));
+
+        IfStmt s = new IfStmt(
+                new ValueExp(new BoolValue(true)), thenS, elseS
+        );
+
+        assertEquals("if true then print(2) else print(3)", s.toString());
+    }
+
+
 }

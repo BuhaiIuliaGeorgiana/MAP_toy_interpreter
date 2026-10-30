@@ -62,4 +62,10 @@ public class PrintStmtTest {
         assertThrows(ExpressionException.class, () -> s.execute(state));
         assertEquals(0, state.getOut().size());
     }
+
+    @Test
+    void testToString() {
+        PrintStmt s = new PrintStmt(new ValueExp(new IntValue(5)));
+        assertEquals("print(5)", s.toString());
+    }
 }

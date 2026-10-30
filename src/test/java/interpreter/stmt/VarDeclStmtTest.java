@@ -69,6 +69,6 @@ public class VarDeclStmtTest {
     @Test
     void testToString() {
         VarDeclStmt s = new VarDeclStmt("x", new IntType());
-        assertEquals("int x;", s.toString());
+        assertEquals("int x", s.toString());
     }
 }

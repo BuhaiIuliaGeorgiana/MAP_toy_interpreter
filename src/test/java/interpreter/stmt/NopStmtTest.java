@@ -26,4 +26,10 @@ public class NopStmtTest {
         assertSame(s, state.getExeStack().pop());
         assertTrue(state.getExeStack().isEmpty());
     }
+
+    @Test
+    void testToString() {
+        NopStmt s = new NopStmt();
+        assertEquals("nop", s.toString());
+    }
 }
