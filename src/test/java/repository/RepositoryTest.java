@@ -1,9 +1,10 @@
-package interpreter.repository;
+package repository;
 
 import interpreter.PrgState;
 import interpreter.model.adt.*;
 import interpreter.model.stmt.NopStmt;
 
+import interpreter.repository.Repository;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,12 +14,7 @@ public class RepositoryTest {
     void testGetCurrentProgram() {
         NopStmt s = new NopStmt();
 
-        PrgState state = new PrgState(
-                new MyStack<>(),
-                new MyDictionary<>(),
-                new MyList<>(),
-                s
-        );
+       PrgState state = PrgState.of(s);
 
         Repository repo = new Repository(state);
 

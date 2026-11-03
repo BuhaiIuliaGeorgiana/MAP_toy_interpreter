@@ -20,7 +20,7 @@ public class PrintStmtTest {
     @Test
     void testPrintInt() throws MyException {
         PrintStmt s = new PrintStmt(new ValueExp(new IntValue(5)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertSame(state, s.execute(state));
@@ -31,7 +31,7 @@ public class PrintStmtTest {
     @Test
     void testPrintBool() throws MyException {
         PrintStmt s = new PrintStmt(new ValueExp(new BoolValue(true)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         s.execute(state);
@@ -42,7 +42,7 @@ public class PrintStmtTest {
     void testPrintPreservesOrder() throws MyException {
         PrintStmt s1 = new PrintStmt(new ValueExp(new IntValue(2)));
         PrintStmt s2 = new PrintStmt(new ValueExp(new IntValue(3)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s1);
+        PrgState state = PrgState.of(s1);
         state.getExeStack().pop();
 
         s1.execute(state);
@@ -56,7 +56,7 @@ public class PrintStmtTest {
     void testInvalidExpressionThrows() throws MyException {
         ArithExp exp = new ArithExp(ArithOp.DIV, new ValueExp(new IntValue(5)), new ValueExp(new IntValue(0)));
         PrintStmt s = new PrintStmt(exp);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertThrows(ExpressionException.class, () -> s.execute(state));

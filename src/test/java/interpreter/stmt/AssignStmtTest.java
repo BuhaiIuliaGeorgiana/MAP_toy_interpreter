@@ -21,7 +21,7 @@ public class AssignStmtTest {
     @Test
     void testAssignInt() throws MyException {
         AssignStmt s = new AssignStmt("x", new ValueExp(new IntValue(5)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);;
         state.getExeStack().pop();
         state.getSymTable().put("x", new IntValue(0));
 
@@ -32,7 +32,7 @@ public class AssignStmtTest {
     @Test
     void testAssignBool() throws MyException {
         AssignStmt s = new AssignStmt("b", new ValueExp(new BoolValue(true)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);;
         state.getExeStack().pop();
         state.getSymTable().put("b", new BoolValue(false));
 
@@ -43,7 +43,7 @@ public class AssignStmtTest {
     @Test
     void testUpdateExistingValue() throws MyException {
         AssignStmt s = new AssignStmt("x", new ValueExp(new IntValue(8)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);;
         state.getExeStack().pop();
         state.getSymTable().put("x", new IntValue(3));
 
@@ -54,7 +54,7 @@ public class AssignStmtTest {
     @Test
     void testUndeclaredVariableThrows() {
         AssignStmt s = new AssignStmt("x", new ValueExp(new IntValue(5)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);;
 
         StatementException ex = assertThrows(StatementException.class, () -> s.execute(state));
         assertEquals("variable x was not declared", ex.getMessage());
@@ -63,7 +63,7 @@ public class AssignStmtTest {
     @Test
     void testTypeMismatchThrows() throws MyException {
         AssignStmt s = new AssignStmt("x", new ValueExp(new BoolValue(true)));
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);;
         state.getExeStack().pop();
         state.getSymTable().put("x", new IntValue(0));
 
@@ -75,7 +75,7 @@ public class AssignStmtTest {
     void testInvalidExpressionThrows() throws MyException {
         ArithExp exp = new ArithExp(ArithOp.DIV, new ValueExp(new IntValue(5)), new ValueExp(new IntValue(0)));
         AssignStmt s = new AssignStmt("x", exp);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);;
         state.getExeStack().pop();
         state.getSymTable().put("x", new IntValue(0));
 

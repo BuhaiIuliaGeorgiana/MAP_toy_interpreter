@@ -19,8 +19,7 @@ public class ControllerTest {
     @Test
     void testOneStep() throws MyException {
         PrintStmt s = new PrintStmt(new ValueExp(new IntValue(5)));
-        PrgState state = new PrgState(
-                new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
 
         Controller c = new Controller(new Repository(state), false);
 
@@ -32,8 +31,7 @@ public class ControllerTest {
     @Test
     void testOneStepEmptyStackThrows() throws MyException {
         NopStmt s = new NopStmt();
-        PrgState state = new PrgState(
-                new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
 
         state.getExeStack().pop();
 
@@ -60,9 +58,7 @@ public class ControllerTest {
 
     @Test
     void testExample2() throws MyException {
-        PrgState state = new PrgState(
-                new MyStack<>(), new MyDictionary<>(),
-                new MyList<>(), Examples.ex2());
+        PrgState state = PrgState.of(Examples.ex2());
 
         Controller c = new Controller(new Repository(state), false);
         c.allStep();
@@ -73,10 +69,7 @@ public class ControllerTest {
 
     @Test
     void testExample3() throws MyException {
-        PrgState state = new PrgState(
-                new MyStack<>(), new MyDictionary<>(),
-                new MyList<>(), Examples.ex3());
-
+        PrgState state = PrgState.of(Examples.ex3());
         Controller c = new Controller(new Repository(state), false);
         c.allStep();
 

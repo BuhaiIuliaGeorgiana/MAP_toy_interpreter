@@ -21,7 +21,7 @@ public class VarDeclStmtTest {
     @Test
     void testDeclareInt() throws MyException {
         VarDeclStmt s = new VarDeclStmt("x", new IntType());
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertSame(state, s.execute(state));
@@ -31,7 +31,7 @@ public class VarDeclStmtTest {
     @Test
     void testDeclareBool() throws MyException {
         VarDeclStmt s = new VarDeclStmt("ok", new BoolType());
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         s.execute(state);
@@ -41,7 +41,7 @@ public class VarDeclStmtTest {
     @Test
     void testDuplicateDeclarationThrows() throws MyException {
         VarDeclStmt s = new VarDeclStmt("x", new IntType());
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
         s.execute(state);
 
@@ -59,7 +59,7 @@ public class VarDeclStmtTest {
             public String toString() { return "string"; }
         };
         VarDeclStmt s = new VarDeclStmt("x", invalidType);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertThrows(StatementException.class, () -> s.execute(state));

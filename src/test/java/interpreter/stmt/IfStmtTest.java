@@ -26,7 +26,7 @@ public class IfStmtTest {
         IStmt thenS = new PrintStmt(new ValueExp(new IntValue(2)));
         IStmt elseS = new PrintStmt(new ValueExp(new IntValue(3)));
         IfStmt s = new IfStmt(new ValueExp(new BoolValue(true)), thenS, elseS);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertSame(state, s.execute(state));
@@ -40,7 +40,7 @@ public class IfStmtTest {
         IStmt thenS = new PrintStmt(new ValueExp(new IntValue(2)));
         IStmt elseS = new PrintStmt(new ValueExp(new IntValue(3)));
         IfStmt s = new IfStmt(new ValueExp(new BoolValue(false)), thenS, elseS);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         s.execute(state);
@@ -54,7 +54,7 @@ public class IfStmtTest {
         IStmt thenS = new PrintStmt(new ValueExp(new IntValue(2)));
         IStmt elseS = new PrintStmt(new ValueExp(new IntValue(3)));
         IfStmt s = new IfStmt(new ValueExp(new IntValue(1)), thenS, elseS);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertThrows(StatementException.class, () -> s.execute(state));
@@ -67,7 +67,7 @@ public class IfStmtTest {
         IStmt thenS = new PrintStmt(new ValueExp(new IntValue(2)));
         IStmt elseS = new PrintStmt(new ValueExp(new IntValue(3)));
         IfStmt s = new IfStmt(exp, thenS, elseS);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertThrows(ExpressionException.class, () -> s.execute(state));

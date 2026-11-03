@@ -15,7 +15,7 @@ public class NopStmtTest {
     @Test
     void testDoesNotChangeProgramState() throws MyException {
         NopStmt s = new NopStmt();
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getSymTable().put("x", new IntValue(5));
         state.getOut().add(new IntValue(2));
 

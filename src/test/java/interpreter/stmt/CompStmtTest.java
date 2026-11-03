@@ -21,7 +21,7 @@ public class CompStmtTest {
         IStmt first = new NopStmt();
         IStmt second = new PrintStmt(new ValueExp(new IntValue(5)));
         CompStmt s = new CompStmt(first, second);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         s.execute(state);
@@ -36,7 +36,7 @@ public class CompStmtTest {
         IStmt first = new PrintStmt(new ValueExp(new IntValue(2)));
         IStmt second = new PrintStmt(new ValueExp(new IntValue(3)));
         CompStmt s = new CompStmt(first, second);
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), s);
+        PrgState state = PrgState.of(s);
         state.getExeStack().pop();
 
         assertSame(state, s.execute(state));
