@@ -61,4 +61,6 @@ public class PrgState {
     public String toString(){
         return "Out:\n" + out.toString() + "\n SymTable: \n" + symTable.toString() + "\n ExeStack: \n" + exeStack.toString();
     }
+
+    public IDictionary<StringValue, BufferedReader> getFileTable() {  return fileTable; }
 }
