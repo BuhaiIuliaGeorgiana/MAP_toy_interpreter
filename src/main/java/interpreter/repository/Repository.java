@@ -2,6 +2,7 @@ package interpreter.repository;
 
 import interpreter.PrgState;
 import interpreter.exceptions.MyException;
+import interpreter.exceptions.RepositoryException;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

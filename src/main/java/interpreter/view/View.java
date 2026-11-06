@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class View {
     private Scanner scanner = new Scanner(System.in);
     private IStmt selectedProgram;
-
+    private String logPath;
     public void start() {
         while (true) {
             System.out.println("\n1. Select program");
@@ -63,7 +63,7 @@ public class View {
 
         PrgState state = PrgState.of(selectedProgram);
 
-        IRepository repo = new Repository(state);
+        IRepository repo = new Repository(state,logPath);
         Controller controller = new Controller(repo, true);
 
         try {

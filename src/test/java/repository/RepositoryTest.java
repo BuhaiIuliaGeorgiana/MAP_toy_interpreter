@@ -16,7 +16,7 @@ public class RepositoryTest {
 
        PrgState state = PrgState.of(s);
 
-        Repository repo = new Repository(state);
+        Repository repo = new Repository(state, "tests.txt");
 
         assertSame(state, repo.getCrtPrg());
     }
