@@ -1,5 +1,6 @@
 package interpreter.adt;
 
+import interpreter.exceptions.MyException;
 import interpreter.model.adt.MyDictionary;
 import interpreter.exceptions.ADTException;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,5 +64,21 @@ public class MyDictionaryTest {
     @Test
     void testToString(){
         assertEquals("{hello=1}", dict.toString());
+    }
+
+
+    @Test
+    void removeExistingElement() throws ADTException {
+        dict.put("world",2);
+        dict.remove("world");
+        assertFalse(dict.isDefined("world"));
+    }
+
+    @Test
+    void removeNonExistingElement() throws ADTException {
+
+        MyException ex = assertThrows(ADTException.class, ()-> dict.remove("world"));
+        assertFalse(dict.isDefined("world"));
+        assertEquals("Key does not exist", ex.getMessage());
     }
 }

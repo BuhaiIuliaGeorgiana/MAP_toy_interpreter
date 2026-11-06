@@ -1,9 +1,6 @@
 package exceptions;
 
-import interpreter.exceptions.ADTException;
-import interpreter.exceptions.ExpressionException;
-import interpreter.exceptions.MyException;
-import interpreter.exceptions.StatementException;
+import interpreter.exceptions.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,5 +31,13 @@ public class ExceptionsTest {
         assertEquals("Variable x not declared.", ex.getMessage());
         assertInstanceOf(MyException.class,ex);
 
+    }
+
+    @Test
+    void testRepositoryException(){
+        RepositoryException ex = new RepositoryException("LogFile is null.");
+
+        assertEquals("LogFile is null.", ex.getMessage());
+        assertInstanceOf(MyException.class,ex);
     }
 }
