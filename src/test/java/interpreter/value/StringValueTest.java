@@ -27,5 +27,17 @@ public class StringValueTest {
 
         assertEquals("\"hello\"",s.toString());
     }
+
+    @Test
+    void testEquals(){
+        StringValue s2 = new StringValue("hello");
+        assertEquals(s,s2);
+    }
+
+    @Test
+    void testHashCode(){
+        StringValue s2 = new StringValue("hello");
+        assertEquals(s.hashCode(),s2.hashCode());
+    }
 }
 

@@ -14,6 +14,8 @@ import interpreter.model.value.BoolValue;
 import interpreter.model.value.IValue;
 import interpreter.model.value.IntValue;
 import org.junit.jupiter.api.Test;
+import interpreter.model.type.StringType;
+import interpreter.model.value.StringValue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,5 +72,14 @@ public class VarDeclStmtTest {
     void testToString() {
         VarDeclStmt s = new VarDeclStmt("x", new IntType());
         assertEquals("int x", s.toString());
+    }
+    @Test
+    void testDeclareString() throws MyException {
+        VarDeclStmt s = new VarDeclStmt("name", new StringType());
+        PrgState state = PrgState.of(s);
+        state.getExeStack().pop();
+
+        s.execute(state);
+        assertEquals(new StringValue(""), state.getSymTable().lookup("name"));
     }
 }
