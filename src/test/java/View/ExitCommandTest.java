@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import interpreter.view.ExitCommand;
 import org.junit.jupiter.api.Test;

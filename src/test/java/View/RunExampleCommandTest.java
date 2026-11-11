@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import interpreter.PrgState;
 import interpreter.controller.Controller;

@@ -56,7 +56,7 @@ public class VarDeclStmtTest {
             public IValue defaultValue() { return new IntValue(0); }
 
             @Override
-            public String toString() { return "string"; }
+            public String toString() { return "xyz"; }
         };
         VarDeclStmt s = new VarDeclStmt("x", invalidType);
         PrgState state = PrgState.of(s);

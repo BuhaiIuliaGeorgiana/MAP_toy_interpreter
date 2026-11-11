@@ -25,7 +25,7 @@ public class StringValueTest {
     @Test
     void testToString(){
 
-        assertEquals("hello",s.toString());
+        assertEquals("\"hello\"",s.toString());
     }
 }
 
