@@ -27,4 +27,9 @@ public record CloseRFileStmt(IExp exp) implements IStmt {
         }
         return state;
     }
+
+    @Override
+    public String toString() {
+        return "closeRFile(" + exp + ")";
+    }
 }
