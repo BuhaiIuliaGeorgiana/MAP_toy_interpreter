@@ -42,7 +42,7 @@ public class Controller {
 
     private void display(PrgState prg) {
         if (displayFlag) {
-            System.out.println(prg);
+            System.out.println(prg.toLogString());
         }
     }
 }

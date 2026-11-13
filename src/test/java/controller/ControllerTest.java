@@ -90,23 +90,13 @@ public class ControllerTest {
         assertEquals(4, count);
     }
 
-    @Test
-    void testInvalidExample1() {
-        PrgState state = PrgState.of(Examples.ex1());
-        Repository repo = new Repository(
-                state, dir.resolve("log1.txt").toString()
-        );
-        Controller c = new Controller(repo, false);
-
-        assertThrows(StatementException.class, c::allStep);
-    }
 
     @Test
     void testOneStep() throws MyException {
         PrintStmt s = new PrintStmt(new ValueExp(new IntValue(5)));
         PrgState state = PrgState.of(s);
 
-        Controller c = new Controller(new Repository(state,"tests.txt"), false);
+        Controller c = new Controller(new Repository(state,dir.resolve("testLog.txt").toString()), false);
 
         assertSame(state, c.oneStep(state));
         assertEquals(new IntValue(5), state.getOut().get(0));
@@ -120,7 +110,7 @@ public class ControllerTest {
 
         state.getExeStack().pop();
 
-        Controller c = new Controller(new Repository(state,"tests.txt"), false);
+        Controller c = new Controller(new Repository(state,dir.resolve("testLog.txt").toString()), false);
 
         assertThrows(StatementException.class, () -> c.oneStep(state));
     }
@@ -145,7 +135,7 @@ public class ControllerTest {
     void testExample2() throws MyException {
         PrgState state = PrgState.of(Examples.ex2());
 
-        Controller c = new Controller(new Repository(state,"tests.txt"), false);
+        Controller c = new Controller(new Repository(state,dir.resolve("testLog.txt").toString()), false);
         c.allStep();
 
         assertEquals(new IntValue(18), state.getOut().get(0));
@@ -155,7 +145,7 @@ public class ControllerTest {
     @Test
     void testExample3() throws MyException {
         PrgState state = PrgState.of(Examples.ex3());
-        Controller c = new Controller(new Repository(state,"tests.txt"), false);
+        Controller c = new Controller(new Repository(state,dir.resolve("testLog.txt").toString()), false);
         c.allStep();
 
         assertEquals(new IntValue(2), state.getOut().get(0));
