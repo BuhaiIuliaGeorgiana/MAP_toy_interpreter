@@ -11,30 +11,7 @@ public class Examples {
     // int a,int b, bool c, a = 1, b = 2,  c = a!=b;print c
     public static IStmt ex1() {
 
-        /*return new CompStmt(
-                new VarDeclStmt("v", new IntType()),
-                new CompStmt(
-                        new AssignStmt("v",
-                                new ValueExp(new IntValue(2))),
-                        new PrintStmt(new VarExp("v"))
-                )
-        );
-        */
-        /*
-        return new CompStmt(
-                new VarDeclStmt("a", new BoolType()),
-                new CompStmt(
-                        new AssignStmt("a", new ValueExp(new IntValue(2))),
-                        new PrintStmt(new VarExp("v"))
-                )
-        );
 
-         */
-
-        // int a, int b, bool c;
-// a = 1; b = 2;
-// c = a != b;
-// print(c);
 
         return new CompStmt(
                 new VarDeclStmt("a", new IntType()),
