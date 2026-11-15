@@ -16,7 +16,7 @@ public record VarDeclStmt(String name, IType type) implements IStmt {
         var symTable = state.getSymTable();
         if (symTable.isDefined(name))
             throw new StatementException("variable " + name + " was already declared");
-        if (!type.toString().equals("bool") && !type.toString().equals("int") && !type.toString().equals("string")){
+        if (!type.toString().equals("bool") && !type.toString().equals("int") && !type.toString().equals("string") && !type.toString().equals("ref")){
             throw new StatementException("invalid type (must be bool int or string)");
         }
 

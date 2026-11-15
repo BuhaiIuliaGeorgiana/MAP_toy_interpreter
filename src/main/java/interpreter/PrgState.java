@@ -13,21 +13,23 @@ public class PrgState {
     private IList<IValue> out;
     private final IStmt originalProgram;
     private IDictionary<StringValue, BufferedReader> fileTable;
-
+    private IHeap heap;
     public PrgState(IStack<IStmt> exeStack, IDictionary<String, IValue> symTable,
-                    IList<IValue> out,IDictionary<StringValue, BufferedReader> fileTable, IStmt program) {
+                    IList<IValue> out,IDictionary<StringValue, BufferedReader> fileTable, IStmt program,IHeap heap) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
         this.originalProgram = program;
         this.fileTable= fileTable;
+        this.heap = heap;
+
         exeStack.push(program);
     }
 
 
     public static PrgState of(IStmt program) {
         return new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
-                new MyDictionary<>(), program);
+                new MyDictionary<>(), program,new MyHeap());
     }
 
     public IStack<IStmt> getExeStack() {
@@ -42,6 +44,8 @@ public class PrgState {
         return out;
     }
 
+    public IHeap getHeap(){ return heap;}
+
     public IStmt getOriginalProgram() {
         return originalProgram;
     }
@@ -53,6 +57,7 @@ public class PrgState {
     public void setSymTable(IDictionary<String,IValue> newDict){
         this.symTable = newDict;
     }
+
 
     public void setOut(IList<IValue> newOut){
         this.out = newOut;
