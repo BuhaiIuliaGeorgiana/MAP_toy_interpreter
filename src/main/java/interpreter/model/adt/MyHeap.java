@@ -20,7 +20,7 @@ public class MyHeap implements IHeap {
 
     @Override
     public IValue get(int address) throws ADTException {
-        if(!isDefined(address)){
+        if (!isDefined(address)) {
             throw new ADTException("missing key.");
         }
 
@@ -29,11 +29,11 @@ public class MyHeap implements IHeap {
 
     @Override
     public void update(int address, IValue value) throws ADTException {
-        if(!isDefined(address)){
+        if (!isDefined(address)) {
             throw new ADTException("missing key.");
         }
 
-        heap.put(address,value);
+        heap.put(address, value);
     }
 
     @Override
@@ -46,9 +46,14 @@ public class MyHeap implements IHeap {
         return Map.copyOf(heap);
     }
 
-    @Override public void setContent(Map<Integer, IValue> content) {
+    @Override
+    public void setContent(Map<Integer, IValue> content) {
         heap = new HashMap<>(content);
     }
-    // TODO: get and update (a missing address -> ADTException), isDefined,
-    //       getContent (Map.copyOf(heap)), toString
+
+    @Override
+    public String toString() {
+        return heap.toString();
+    }
+
 }
