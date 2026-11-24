@@ -21,7 +21,8 @@ public class Main {
                 Examples.ex5(),
                 Examples.ex6(),
                 Examples.ex7(),
-                Examples.ex8()
+                Examples.ex8(),
+                Examples.ex10()
         );
 
         TextMenu menu = new TextMenu();
