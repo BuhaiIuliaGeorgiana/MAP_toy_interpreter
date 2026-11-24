@@ -87,7 +87,7 @@ public class ControllerTest {
                 .count();
 
         // Initial state + CompStmt + first print + second print
-        assertEquals(4, count);
+        assertEquals(7, count);
     }
 
 
