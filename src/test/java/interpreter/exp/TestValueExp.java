@@ -2,6 +2,7 @@ package interpreter.exp;
 
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.MyDictionary;
+import interpreter.model.adt.MyHeap;
 import interpreter.model.exp.ValueExp;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IntValue;
@@ -13,13 +14,13 @@ public class TestValueExp {
     @Test
     void testEvalForIntegerValues() throws MyException {
         ValueExp e = new ValueExp(new IntValue(5));
-        assertEquals(new IntValue(5),e.eval(new MyDictionary<>(), state.getHeap()));
+        assertEquals(new IntValue(5),e.eval(new MyDictionary<>(), new MyHeap()));
     }
 
     @Test
     void testEvalForBooleanValues() throws MyException{
         ValueExp e = new ValueExp(new BoolValue(true));
-        assertEquals(new BoolValue(true),e.eval(new MyDictionary<>(), state.getHeap()));
+        assertEquals(new BoolValue(true),e.eval(new MyDictionary<>(), new MyHeap()));
     }
 
     @Test

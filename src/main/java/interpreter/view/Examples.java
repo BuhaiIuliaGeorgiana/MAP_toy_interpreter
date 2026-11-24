@@ -246,6 +246,33 @@ public class Examples {
         );
     }
 
+    public static IStmt ex9() {
+        return new CompStmt(
+                new VarDeclStmt("v", new RefType(new IntType())),
+                new CompStmt(
+                        new NewStmt("v",
+                                new ValueExp(new IntValue(20))),
+                        new CompStmt(
+                                new VarDeclStmt("a",
+                                        new RefType(
+                                                new RefType(new IntType()))),
+                                new CompStmt(
+                                        new NewStmt("a", new VarExp("v")),
+                                        new CompStmt(
+                                                new NewStmt("v",
+                                                        new ValueExp(
+                                                                new IntValue(30))),
+                                                new PrintStmt(
+                                                        new ReadHeapExp(
+                                                                new ReadHeapExp(
+                                                                        new VarExp("a"))))
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
 
     public static IStmt ex10() {
         return new CompStmt(

@@ -3,6 +3,7 @@ package interpreter.exp;
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.MyDictionary;
+import interpreter.model.adt.MyHeap;
 import interpreter.model.exp.VarExp;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IntValue;
@@ -20,7 +21,7 @@ public class VarExpTest {
 
         VarExp exp = new VarExp("x");
 
-        assertEquals(new IntValue(10), exp.eval(dict, state.getHeap()));
+        assertEquals(new IntValue(10), exp.eval(dict, new MyHeap()));
     }
 
     @Test
@@ -30,7 +31,7 @@ public class VarExpTest {
 
         VarExp exp = new VarExp("a");
 
-        assertEquals(new BoolValue(true), exp.eval(dict, state.getHeap()));
+        assertEquals(new BoolValue(true), exp.eval(dict, new MyHeap()));
     }
 
     @Test
@@ -39,7 +40,7 @@ public class VarExpTest {
 
         ExpressionException ex = assertThrows(
                 ExpressionException.class,
-                () -> exp.eval(new MyDictionary<>(), state.getHeap()));
+                () -> exp.eval(new MyDictionary<>(), new MyHeap()));
 
         assertEquals("variable x is not defined", ex.getMessage());
     }
