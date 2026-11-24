@@ -32,7 +32,7 @@ class RelationalExpTest {
                 new ValueExp(new IntValue(right))
         );
 
-        IValue result = exp.eval(symTable);
+        IValue result = exp.eval(symTable, state.getHeap());
 
         assertEquals(new BoolValue(expected), result);
         assertEquals(new BoolType(), result.getType());
@@ -106,7 +106,7 @@ class RelationalExpTest {
                 new ValueExp(new IntValue(5))
         );
 
-        assertThrows(ExpressionException.class, () -> exp.eval(symTable));
+        assertThrows(ExpressionException.class, () -> exp.eval(symTable, state.getHeap()));
     }
 
     @Test
@@ -117,6 +117,6 @@ class RelationalExpTest {
                 new ValueExp(new StringValue("abc"))
         );
 
-        assertThrows(ExpressionException.class, () -> exp.eval(symTable));
+        assertThrows(ExpressionException.class, () -> exp.eval(symTable, state.getHeap()));
     }
 }

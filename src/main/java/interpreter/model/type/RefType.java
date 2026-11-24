@@ -1,5 +1,5 @@
 package interpreter.model.type;
-
+import interpreter.model.value.RefValue;
 import interpreter.model.value.IValue;
 
 public record RefType(IType inner) implements IType {

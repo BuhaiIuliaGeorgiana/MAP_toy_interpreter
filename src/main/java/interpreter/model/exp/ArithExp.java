@@ -3,19 +3,20 @@ package interpreter.model.exp;
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.IDictionary;
+import interpreter.model.adt.IHeap;
 import interpreter.model.value.IValue;
 import interpreter.model.value.IntValue;
 
 public record ArithExp(ArithOp op, IExp left, IExp right) implements  IExp {
     @Override
-    public IValue eval(IDictionary<String,IValue> symTable) throws MyException{
+    public IValue eval(IDictionary<String,IValue> symTable, IHeap heap) throws MyException{
 
-        IValue leftInt = left.eval(symTable);
+        IValue leftInt = left.eval(symTable, heap);
 
         if (!( leftInt instanceof IntValue n1))
             throw new ExpressionException("first operand is not an integer");
 
-        IValue rightInt = right.eval(symTable);
+        IValue rightInt = right.eval(symTable, heap);
 
         if (! (rightInt instanceof IntValue n2))
             throw new ExpressionException("second operand is not an integer");

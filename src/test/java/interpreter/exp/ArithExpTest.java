@@ -5,7 +5,6 @@ import interpreter.exceptions.MyException;
 import interpreter.model.adt.MyDictionary;
 import interpreter.model.exp.ArithExp;
 import interpreter.model.exp.ArithOp;
-import interpreter.model.exp.IExp;
 import interpreter.model.exp.ValueExp;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IntValue;
@@ -17,27 +16,27 @@ public class ArithExpTest {
     void testAddition() throws MyException {
         ArithExp a;
         a = new ArithExp(ArithOp.ADD,new ValueExp(new IntValue(5)),new ValueExp(new IntValue(5)));
-        assertEquals(new IntValue(10),a.eval(new MyDictionary<>()));
+        assertEquals(new IntValue(10),a.eval(new MyDictionary<>(), state.getHeap()));
     }
     @Test
     void testMultiplication() throws MyException {
         ArithExp a;
         a = new ArithExp(ArithOp.MUL,new ValueExp(new IntValue(5)),new ValueExp(new IntValue(5)));
-        assertEquals(new IntValue(25),a.eval(new MyDictionary<>()));
+        assertEquals(new IntValue(25),a.eval(new MyDictionary<>(), state.getHeap()));
 
     }
     @Test
     void testDivision() throws MyException {
         ArithExp a;
         a = new ArithExp(ArithOp.DIV,new ValueExp(new IntValue(50)),new ValueExp(new IntValue(5)));
-        assertEquals(new IntValue(10),a.eval(new MyDictionary<>()));
+        assertEquals(new IntValue(10),a.eval(new MyDictionary<>(), state.getHeap()));
 
     }
     @Test
     void testSubstraction() throws MyException {
         ArithExp a;
         a = new ArithExp(ArithOp.SUB,new ValueExp(new IntValue(5)),new ValueExp(new IntValue(5)));
-        assertEquals(new IntValue(0),a.eval(new MyDictionary<>()));
+        assertEquals(new IntValue(0),a.eval(new MyDictionary<>(), state.getHeap()));
 
     }
     @Test
@@ -72,7 +71,7 @@ public class ArithExpTest {
     void divisionByZero(){
         ArithExp a;
         a = new ArithExp(ArithOp.DIV,new ValueExp(new IntValue(5)),new ValueExp(new IntValue(0)));
-        ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>()));
+        ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>(), state.getHeap()));
         assertEquals("division by zero",ex.getMessage());
     }
 
@@ -80,7 +79,7 @@ public class ArithExpTest {
     void secondOperandNotInteger(){
         ArithExp a;
         a = new ArithExp(ArithOp.DIV,new ValueExp(new IntValue(5)),new ValueExp(new BoolValue(true)));
-        ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>()));
+        ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>(), state.getHeap()));
         assertEquals("second operand is not an integer",ex.getMessage());
     }
 
@@ -88,7 +87,7 @@ public class ArithExpTest {
     void firstOperandNotInteger(){
         ArithExp a;
         a = new ArithExp(ArithOp.DIV,new ValueExp(new BoolValue(true)),new ValueExp(new IntValue(5)));
-        ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>()));
+        ExpressionException ex = assertThrows(ExpressionException.class, () -> a.eval(new MyDictionary<>(), state.getHeap()));
         assertEquals("first operand is not an integer",ex.getMessage());
     }
 

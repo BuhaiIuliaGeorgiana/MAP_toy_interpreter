@@ -20,7 +20,7 @@ public class VarExpTest {
 
         VarExp exp = new VarExp("x");
 
-        assertEquals(new IntValue(10), exp.eval(dict));
+        assertEquals(new IntValue(10), exp.eval(dict, state.getHeap()));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class VarExpTest {
 
         VarExp exp = new VarExp("a");
 
-        assertEquals(new BoolValue(true), exp.eval(dict));
+        assertEquals(new BoolValue(true), exp.eval(dict, state.getHeap()));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class VarExpTest {
 
         ExpressionException ex = assertThrows(
                 ExpressionException.class,
-                () -> exp.eval(new MyDictionary<>()));
+                () -> exp.eval(new MyDictionary<>(), state.getHeap()));
 
         assertEquals("variable x is not defined", ex.getMessage());
     }

@@ -13,12 +13,12 @@ public class ValueExpTest {
     @Test
     void testIntValue() throws MyException {
         ValueExp exp = new ValueExp(new IntValue(10));
-        assertEquals(new IntValue(10), exp.eval(new MyDictionary<>()));
+        assertEquals(new IntValue(10), exp.eval(new MyDictionary<>(), state.getHeap()));
     }
 
     @Test
     void testBoolValue() throws MyException {
         ValueExp exp = new ValueExp(new BoolValue(true));
-        assertEquals(new BoolValue(true), exp.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(true), exp.eval(new MyDictionary<>(), state.getHeap()));
     }
 }

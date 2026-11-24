@@ -14,24 +14,24 @@ public class LogicExpTest {
     @Test
     void TestAndTrueTrue() throws MyException {
         LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
-        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>(), state.getHeap()));
     }
     @Test
     void TestAndTrueFalse() throws MyException {
         LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(false)));
-        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>(), state.getHeap()));
     }
 
     @Test
     void TestAndFalseTrue() throws MyException {
         LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(true)));
-        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>(), state.getHeap()));
     }
 
     @Test
     void TestAndFalseFalse() throws MyException {
         LogicExp l = new LogicExp(LogicOP.AND,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(false)));
-        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>(), state.getHeap()));
     }
 
 
@@ -39,44 +39,44 @@ public class LogicExpTest {
     @Test
     void TestOrTrueFalse() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(false)));
-        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>(), state.getHeap()));
     }
 
     @Test
     void TestOrFalseTrue() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(true)));
-        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>(), state.getHeap()));
     }
 
 
     @Test
     void TestOrTrueTrue() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(true)),new ValueExp(new BoolValue(true)));
-        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(true),l.eval(new MyDictionary<>(), state.getHeap()));
     }
     @Test
     void TestOrFalseFalse() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(false)),new ValueExp(new BoolValue(false)));
-        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>()));
+        assertEquals(new BoolValue(false),l.eval(new MyDictionary<>(), state.getHeap()));
     }
 
     @Test
     void firstOperandNotBoolean() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new IntValue(5)),new ValueExp(new BoolValue(false)));
-        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>()));
+        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>(), state.getHeap()));
 
     }
 
     @Test
     void secondOperandNotBoolean() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new BoolValue(false)),new ValueExp(new IntValue(5)));
-        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>()));
+        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>(), state.getHeap()));
 
     }
 
     void BothOperandsNotBoolean() throws MyException {
         LogicExp l = new LogicExp(LogicOP.OR,new ValueExp(new IntValue(5)),new ValueExp(new IntValue(5)));
-        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>()));
+        ExpressionException ex = assertThrows(ExpressionException.class, ()->l .eval(new MyDictionary<>(), state.getHeap()));
 
     }
 
