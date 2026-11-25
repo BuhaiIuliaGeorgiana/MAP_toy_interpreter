@@ -39,7 +39,7 @@ public class Controller {
             repo.logPrgStateExec();
 
             prg.getHeap().setContent(
-                    GarbageCollector.unsafeGarbageCollector(
+                    GarbageCollector.safeGarbageCollector(
                             GarbageCollector.getAddrFromSymTable(
                                     prg.getSymTable().toMap().values()
                             ),
@@ -52,7 +52,6 @@ public class Controller {
             display(prg);
         }
     }
-
     private void display(PrgState prg) {
         if (displayFlag) {
             System.out.println(prg.toLogString());
