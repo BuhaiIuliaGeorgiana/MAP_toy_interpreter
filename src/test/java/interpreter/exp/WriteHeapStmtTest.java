@@ -1,4 +1,4 @@
-package interpreter.stmt;
+package interpreter.exp;
 
 import interpreter.PrgState;
 import interpreter.exceptions.MyException;
