@@ -7,7 +7,10 @@ import interpreter.exceptions.StatementException;
 import interpreter.model.adt.*;
 import interpreter.model.stmt.*;
 import interpreter.model.exp.ValueExp;
+import interpreter.model.type.IntType;
+import interpreter.model.type.RefType;
 import interpreter.model.value.IntValue;
+import interpreter.model.value.RefValue;
 import interpreter.repository.Repository;
 import interpreter.view.Examples;
 
@@ -17,6 +20,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+
 public class ControllerTest {
 
     @TempDir
@@ -151,4 +157,123 @@ public class ControllerTest {
         assertEquals(new IntValue(2), state.getOut().get(0));
         assertEquals(1, state.getOut().size());
     }
+
+
+
+    @Test
+    void testExample6() throws MyException {
+        PrgState state = runProgram(Examples.ex6(), "log6.txt");
+
+        assertEquals(new RefValue(1, new IntType()),
+                state.getOut().get(0));
+
+        assertEquals(new RefValue(2, new RefType(new IntType())),
+                state.getOut().get(1));
+
+        assertEquals(2, state.getOut().size());
+
+        assertEquals(Map.of(
+                1, new IntValue(20),
+                2, new RefValue(1, new IntType())
+        ), state.getHeap().getContent());
+
+        assertTrue(state.getExeStack().isEmpty());
+    }
+
+    @Test
+    void testExample7() throws MyException {
+        PrgState state = runProgram(Examples.ex7(), "log7.txt");
+
+        assertEquals(List.of(
+                new IntValue(20),
+                new IntValue(25)
+        ), state.getOut().toList());
+
+        assertTrue(state.getExeStack().isEmpty());
+    }
+
+    @Test
+    void testExample8() throws MyException {
+        PrgState state = runProgram(Examples.ex8(), "log8.txt");
+
+        assertEquals(List.of(
+                new IntValue(20),
+                new IntValue(35)
+        ), state.getOut().toList());
+
+        assertEquals(new IntValue(30), state.getHeap().get(1));
+
+        assertEquals(new RefValue(1, new IntType()),
+                state.getSymTable().lookup("v"));
+
+        assertEquals(1, state.getHeap().getContent().size());
+
+        assertTrue(state.getExeStack().isEmpty());
+    }
+
+
+    @Test
+    void testExample9() throws MyException {
+        PrgState state = runProgram(Examples.ex9(), "log9.txt");
+
+        assertEquals(List.of(new IntValue(20)),
+                state.getOut().toList());
+
+        assertEquals(Map.of(
+                1, new IntValue(20),
+                2, new RefValue(1, new IntType()),
+                3, new IntValue(30)
+        ), state.getHeap().getContent());
+
+        assertEquals(new RefValue(3, new IntType()),
+                state.getSymTable().lookup("v"));
+
+        assertTrue(state.getExeStack().isEmpty());
+    }
+
+    @Test
+    void testExample10() throws MyException {
+        PrgState state = runProgram(Examples.ex10(), "log10.txt");
+
+        assertEquals(List.of(
+                new IntValue(4),
+                new IntValue(3),
+                new IntValue(2),
+                new IntValue(1),
+                new IntValue(0)
+        ), state.getOut().toList());
+
+        assertEquals(new IntValue(0),
+                state.getSymTable().lookup("v"));
+
+        assertTrue(state.getExeStack().isEmpty());
+    }
+
+
+    @Test
+    void testGarbageCollectionRemovesUnreachableAddresses()
+            throws MyException {
+
+        IStmt program = new CompStmt(
+                new VarDeclStmt("v", new RefType(new IntType())),
+                new CompStmt(
+                        new NewStmt("v",
+                                new ValueExp(new IntValue(20))),
+                        new NewStmt("v",
+                                new ValueExp(new IntValue(30)))
+                )
+        );
+
+        PrgState state = runProgram(program, "logGC.txt");
+
+        assertFalse(state.getHeap().isDefined(1));
+
+        assertEquals(Map.of(2, new IntValue(30)),
+                state.getHeap().getContent());
+
+        assertEquals(new RefValue(2, new IntType()),
+                state.getSymTable().lookup("v"));
+    }
+
+
 }
